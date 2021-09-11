@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<efcore namespace="MicroTechTask" p1:name="TestDevModel" p1:Guid="c0df225e-c132-4a1f-bdff-234c332812cf" xmlns:p1="http://devart.com/schemas/EntityDeveloper/1.0">
+  <class name="Account" entity-set="Accounts" table="Accounts" schema="dbo" p1:Guid="fb7d7233-7ef6-4e47-8922-4842b647c459">
+    <id name="AccNumber" type="String" p1:ValidateMaxLength="10" p1:ValidateRequired="true" p1:Guid="db39fc46-bb59-436e-b8eb-f9efbd484ede">
+      <column name="Acc_Number" not-null="True" length="10" sql-type="nchar" p1:fixed-length="True" p1:unicode="True" />
+    </id>
+    <property name="ACCParent" type="String" p1:nullable="True" p1:ValidateMaxLength="10" p1:ValidateRequired="false" p1:Guid="ec8386cf-9d21-473d-ba66-b17e63395532">
+      <column name="ACC_Parent" not-null="False" length="10" sql-type="nchar" p1:fixed-length="True" p1:unicode="True" />
+    </property>
+    <property name="Balance" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="031a16f8-da6a-42fd-9b07-df2bc1baeae6">
+      <column name="Balance" not-null="False" precision="20" scale="9" sql-type="decimal" p1:unicode="False" />
+    </property>
+  </class>
+  <associations>
+    <association name="Account_Account" cardinality="OneToMany" p1:Guid="8f11b1ca-b410-4e14-b64b-91bffffdfe6c">
+      <end1 multiplicity="ZeroOrOne" name="ParentAccount" class="Account" relation-class="Account" constrained="True" lazy="False" p1:Guid="7c723eff-af14-47d5-911d-01924b2fc0b4">
+        <property name="AccNumber" />
+      </end1>
+      <end2 multiplicity="Many" name="ChildAccounts" class="Account" relation-class="Account" lazy="False" p1:Guid="07a01e3c-eb60-46fe-9193-37216f098761">
+        <property name="ACCParent" />
+      </end2>
+    </association>
+  </associations>
+</efcore>
